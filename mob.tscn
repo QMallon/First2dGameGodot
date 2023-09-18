@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq4mkfwx8g0ww"]
+
+[ext_resource type="Script" path="res://Mob.gd" id="1_bdq76"]
+[ext_resource type="Texture2D" uid="uid://b2c6sn04a7syd" path="res://art/enemyFlyingAlt_1.png" id="2_4tjbw"]
+[ext_resource type="Texture2D" uid="uid://mrckdxshevpd" path="res://art/enemyFlyingAlt_2.png" id="3_k1k77"]
+[ext_resource type="Texture2D" uid="uid://dea34v1sdgueq" path="res://art/enemySwimming_1.png" id="4_nh5w8"]
+[ext_resource type="Texture2D" uid="uid://dl1k6lbkixxp1" path="res://art/enemySwimming_2.png" id="5_gfjdh"]
+[ext_resource type="Texture2D" uid="uid://c2cde12guav4d" path="res://art/enemyWalking_1.png" id="6_cas66"]
+[ext_resource type="Texture2D" uid="uid://d06ma6d6afur7" path="res://art/enemyWalking_2.png" id="7_aaid5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp3ci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4tjbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_k1k77")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nh5w8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gfjdh")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cas66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aaid5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evsyw"]
+radius = 34.0
+height = 100.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_bdq76")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_fp3ci")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_evsyw")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CollisionShape2D"]
+position = Vector2(-4.37114e-08, -1)
+rotation = 1.5708
